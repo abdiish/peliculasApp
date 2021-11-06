@@ -10,13 +10,20 @@ import { RespuestaMDB, Pelicula } from '../interfaces/interfaces';
 export class Tab1Page implements OnInit{
 
   peliculasRecientes: Pelicula[] = [];
+  peliculasPopulares: Pelicula[] = [];
 
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(){
+
     this.moviesService.getFeature().subscribe(resp => {
-      console.log('Respuesta', resp);
       this.peliculasRecientes = resp.results;
+    });
+
+    this.moviesService.getPopulares().subscribe(resp => {
+      this.peliculasPopulares = resp.results;
+      console.log('Populares',resp);
+
     });
   }
 

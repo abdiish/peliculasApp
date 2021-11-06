@@ -38,7 +38,15 @@ export class MoviesService {
     const inicio =  `${hoy.getFullYear()}-${mesString}-01`;
     const fin    =  `${hoy.getFullYear()}-${mesString}-${ultimoDia}`;
 
-    return this.ejecutarQuery<RespuestaMDB>( `/discover/movie?primary_release_date.gte=${inicio}&primary_release_date.lte=${fin}`);
+    return this.ejecutarQuery<RespuestaMDB>(`/discover/movie?primary_release_date.gte=${inicio}&primary_release_date.lte=${fin}`);
+
+  }
+
+  getPopulares() {
+
+    const query = '/discover/movie?sort_by=popularity.desc';
+
+    return this.ejecutarQuery<RespuestaMDB>(query);
 
   }
 
